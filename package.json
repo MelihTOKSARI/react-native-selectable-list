@@ -1,6 +1,6 @@
 {
   "name": "rn-selectable-list",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provides multiple buttons to select/deselect each one for example weekdays, months, etc.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
