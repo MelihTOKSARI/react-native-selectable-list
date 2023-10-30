@@ -1,21 +1,34 @@
-import * as React from 'react';
+import React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-selectable-list';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import SelectableList from 'react-native-selectable-list';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+const items = [
+  { text: 'M', selected: false },
+  { text: 'T', selected: false },
+  { text: 'W', selected: true },
+  { text: 'T', selected: false },
+  { text: 'F', selected: false },
+  { text: 'S', selected: false },
+  { text: 'S', selected: false },
+];
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <SelectableList
+        numColumns={7}
+        items={items}
+        // itemHeight={64}
+        // itemWidth={64}
+        // itemSize={64}
+        // itemContainerStyle={{ width: 64, height: 64 }}
+        applyParent={true}
+        margin={2}
+      />
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -23,9 +36,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
 });
+
+export default App;
