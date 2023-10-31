@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, SafeAreaView } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import {
   FlatList,
   type StyleProp,
@@ -23,6 +23,7 @@ interface Props {
   itemSize?: number;
   itemHeight?: number;
   itemWidth?: number;
+  containerStyle?: StyleProp<ViewStyle>;
   itemContainerStyle?: StyleProp<ViewStyle>;
   itemWrapperStyle?: StyleProp<ViewStyle>;
   itemTextStyle?: StyleProp<TextStyle>;
@@ -38,6 +39,7 @@ const SelectableList = ({
   itemSize = 0,
   itemHeight = 0,
   itemWidth = 0,
+  containerStyle,
   itemContainerStyle,
   itemWrapperStyle,
   itemTextStyle,
@@ -67,46 +69,48 @@ const SelectableList = ({
     setColSize(_colSize);
   }, [itemSize, itemWidth, margin, numColumns]);
 
+  if (colSize <= 0) {
+    return null;
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      {colSize > 0 && (
-        <FlatList
-          data={items}
-          renderItem={({ item }) => (
-            <SelectableButton
-              text={item.text}
-              selected={item.selected}
-              containerStyle={[
-                applyParent
-                  ? {
-                      width: itemWidth ? itemWidth : colSize,
-                      height: itemHeight ? itemHeight : colSize,
-                      padding: margin,
-                    }
-                  : undefined,
-                itemContainerStyle,
-              ]}
-              wrapperStyle={[
-                !applyParent
-                  ? {
-                      width: itemWidth ? itemWidth : colSize,
-                      height: itemHeight ? itemHeight : colSize,
-                      margin,
-                    }
-                  : undefined,
-                itemWrapperStyle,
-              ]}
-              textStyle={itemTextStyle}
-              activeStyle={activeStyle}
-              passiveStyle={passiveStyle}
-            />
-          )}
-          numColumns={colLength}
-          scrollEnabled={false}
-          key={colLength}
-        />
-      )}
-    </SafeAreaView>
+    <View style={[styles.container, containerStyle]}>
+      <FlatList
+        data={items}
+        renderItem={({ item }) => (
+          <SelectableButton
+            text={item.text}
+            selected={item.selected}
+            containerStyle={[
+              applyParent
+                ? {
+                    width: itemWidth ? itemWidth : colSize,
+                    height: itemHeight ? itemHeight : colSize,
+                    padding: margin,
+                  }
+                : undefined,
+              itemContainerStyle,
+            ]}
+            wrapperStyle={[
+              !applyParent
+                ? {
+                    width: itemWidth ? itemWidth : colSize,
+                    height: itemHeight ? itemHeight : colSize,
+                    margin,
+                  }
+                : undefined,
+              itemWrapperStyle,
+            ]}
+            textStyle={itemTextStyle}
+            activeStyle={activeStyle}
+            passiveStyle={passiveStyle}
+          />
+        )}
+        numColumns={colLength}
+        scrollEnabled={false}
+        key={colLength}
+      />
+    </View>
   );
 };
 
