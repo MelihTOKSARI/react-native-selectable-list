@@ -19,12 +19,13 @@ const App = () => {
       <SelectableList
         numColumns={7}
         items={items}
-        // itemHeight={64}
+        itemHeight={64}
+        // containerStyle={{ backgroundColor: 'grey' }}
         // itemWidth={64}
         // itemSize={64}
         // itemContainerStyle={{ width: 64, height: 64 }}
-        applyParent={true}
-        margin={2}
+        // applyParent={true}
+        // margin={2}
       />
     </SafeAreaView>
   );
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });
 
