@@ -1,21 +1,48 @@
-# react-native-selectable-list
+# rn-selectable-list
 
-Provides multiple buttons to select/deselect each one for example weekdays, months, etc.
+Provides a bunch of selectable buttons for your list. It automatically wraps the screen horizontally.
 
 ## Installation
 
 ```sh
-npm install react-native-selectable-list
+npm install rn-selectable-list
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-selectable-list';
+import SelectableList from 'rn-selectable-list';
+
+const items = [
+  { text: 'M', selected: false },
+  { text: 'T', selected: false },
+  { text: 'W', selected: true },
+  { text: 'T', selected: false },
+  { text: 'F', selected: false },
+  { text: 'S', selected: false },
+  { text: 'S', selected: false },
+];
 
 // ...
 
-const result = await multiply(3, 7);
+<SafeAreaView style={styles.container}>
+  <SelectableList
+    numColumns={7} // 3rd highest priority default is length of items
+    items={items}
+    // itemHeight={64} // highest priority
+    // itemWidth={64} // highest priority
+    // itemSize={64} // 2nd highest priority
+    // margin={2} // default is 4
+  />
+</SafeAreaView>;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 ```
 
 ## Contributing
