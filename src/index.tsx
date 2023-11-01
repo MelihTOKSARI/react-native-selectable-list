@@ -75,7 +75,10 @@ const SelectableList = ({
     setColSize(_colSize);
   }, [auto, itemSize, itemWidth, margin, numColumns]);
 
-  if (colSize <= 0) {
+  if (
+    (typeof colSize === 'number' && colSize <= 0) ||
+    (typeof colSize === 'string' && colSize !== 'auto')
+  ) {
     return null;
   }
 
