@@ -24,6 +24,7 @@ interface Props {
   itemHeight?: number;
   itemWidth?: number;
   containerStyle?: StyleProp<ViewStyle>;
+  contentContainerStyle?: StyleProp<ViewStyle>;
   itemContainerStyle?: StyleProp<ViewStyle>;
   itemWrapperStyle?: StyleProp<ViewStyle>;
   itemTextStyle?: StyleProp<TextStyle>;
@@ -31,6 +32,7 @@ interface Props {
   passiveStyle?: ButtonStyleModel;
   applyParent?: boolean;
   margin?: number;
+  auto?: boolean;
 }
 
 const SelectableList = ({
@@ -40,6 +42,7 @@ const SelectableList = ({
   itemHeight = 0,
   itemWidth = 0,
   containerStyle,
+  contentContainerStyle,
   itemContainerStyle,
   itemWrapperStyle,
   itemTextStyle,
@@ -47,12 +50,13 @@ const SelectableList = ({
   passiveStyle,
   applyParent = true,
   margin = 4,
+  auto = false,
 }: Props) => {
-  const [colSize, setColSize] = useState(0);
+  const [colSize, setColSize] = useState<number | 'auto'>(0);
   const [colLength, setColLength] = useState(numColumns);
 
   useEffect(() => {
-    let _colSize = 0;
+    let _colSize: number | 'auto' = 0;
     let _colLength = 0;
     if (itemWidth) {
       _colSize = itemWidth;
@@ -60,6 +64,8 @@ const SelectableList = ({
     } else if (itemSize) {
       _colSize = itemSize;
       _colLength = Math.floor((screenWidth - margin * 2) / _colSize);
+    } else if (auto) {
+      _colSize = 'auto';
     } else if (numColumns) {
       _colSize = Math.floor((screenWidth - margin * 2) / numColumns);
       _colLength = numColumns;
@@ -67,7 +73,7 @@ const SelectableList = ({
 
     setColLength(_colLength);
     setColSize(_colSize);
-  }, [itemSize, itemWidth, margin, numColumns]);
+  }, [auto, itemSize, itemWidth, margin, numColumns]);
 
   if (colSize <= 0) {
     return null;
@@ -109,6 +115,10 @@ const SelectableList = ({
         numColumns={colLength}
         scrollEnabled={false}
         key={colLength}
+        contentContainerStyle={[
+          auto ? styles.autoWrapper : undefined,
+          contentContainerStyle,
+        ]}
       />
     </View>
   );
@@ -117,6 +127,11 @@ const SelectableList = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+  },
+  autoWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 });
 
