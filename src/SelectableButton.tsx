@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   type StyleProp,
   StyleSheet,
@@ -36,6 +36,11 @@ const SelectableButton = ({
   wrapperStyle,
 }: Props) => {
   const [isSelected, setIsSelected] = useState(selected);
+
+  useEffect(() => {
+    setIsSelected(selected);
+  }, [selected]);
+
   const onPressed = () => {
     setIsSelected((prev) => {
       if (onSelect) {
