@@ -33,6 +33,7 @@ interface Props {
   applyParent?: boolean;
   margin?: number;
   auto?: boolean;
+  handleItemSelected?: (state: boolean, index: number) => void;
 }
 
 const SelectableList = ({
@@ -51,6 +52,7 @@ const SelectableList = ({
   applyParent = true,
   margin = 4,
   auto = false,
+  handleItemSelected,
 }: Props) => {
   const [colSize, setColSize] = useState<number | 'auto'>(0);
   const [colLength, setColLength] = useState(numColumns);
@@ -82,12 +84,28 @@ const SelectableList = ({
     return null;
   }
 
+  const onItemSelected = (
+    state: boolean,
+    index: number,
+    itemOnSelected?: (state: boolean) => void
+  ) => {
+    if (itemOnSelected) {
+      itemOnSelected(state);
+    }
+    if (handleItemSelected) {
+      handleItemSelected(state, index);
+    }
+  };
+
   return (
     <View style={[styles.container, containerStyle]}>
       <FlatList
         data={items}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <SelectableButton
+            onSelect={(state: boolean) =>
+              onItemSelected(state, index, item.onSelected)
+            }
             text={item.text}
             selected={item.selected}
             containerStyle={[
