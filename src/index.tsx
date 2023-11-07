@@ -34,6 +34,7 @@ interface Props {
   margin?: number;
   auto?: boolean;
   handleItemSelected?: (state: boolean, index: number) => void;
+  disabled?: boolean;
 }
 
 const SelectableList = ({
@@ -53,6 +54,7 @@ const SelectableList = ({
   margin = 4,
   auto = false,
   handleItemSelected,
+  disabled = false,
 }: Props) => {
   const [colSize, setColSize] = useState<number | 'auto'>(0);
   const [colLength, setColLength] = useState(numColumns);
@@ -131,6 +133,7 @@ const SelectableList = ({
             textStyle={itemTextStyle}
             activeStyle={activeStyle}
             passiveStyle={passiveStyle}
+            disabled={disabled}
           />
         )}
         numColumns={colLength}

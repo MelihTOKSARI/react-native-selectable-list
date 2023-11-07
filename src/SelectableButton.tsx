@@ -23,6 +23,7 @@ interface Props {
   activeStyle?: ButtonStyleModel;
   passiveStyle?: ButtonStyleModel;
   wrapperStyle?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 
 const SelectableButton = ({
@@ -34,6 +35,7 @@ const SelectableButton = ({
   activeStyle,
   passiveStyle,
   wrapperStyle,
+  disabled,
 }: Props) => {
   const [isSelected, setIsSelected] = useState(selected);
 
@@ -55,6 +57,7 @@ const SelectableButton = ({
     <TouchableOpacity
       style={[styles.container, containerStyle]}
       onPress={onPressed}
+      disabled={disabled}
     >
       <View
         style={[

@@ -76,6 +76,7 @@ const App = () => {
         handleItemSelected={(state: boolean, index: number) =>
           console.log('state:', state, ' - index:', index)
         }
+        // disabled={true}
         // containerStyle={{ backgroundColor: 'grey' }}
         // itemWidth={64}
         // itemSize={64}
