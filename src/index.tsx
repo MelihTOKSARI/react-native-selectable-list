@@ -12,6 +12,7 @@ import SelectableButton, { type ButtonStyleModel } from './SelectableButton';
 const screenWidth = Dimensions.get('window').width;
 
 interface SelectableButtonModel {
+  id?: number;
   text: string;
   selected?: boolean;
   onSelected?: (state: boolean) => void;
@@ -35,6 +36,7 @@ interface Props {
   auto?: boolean;
   handleItemSelected?: (state: boolean, index: number) => void;
   disabled?: boolean;
+  singleSelection?: boolean;
 }
 
 const SelectableList = ({
@@ -55,9 +57,13 @@ const SelectableList = ({
   auto = false,
   handleItemSelected,
   disabled = false,
+  singleSelection = false,
 }: Props) => {
   const [colSize, setColSize] = useState<number | 'auto'>(0);
   const [colLength, setColLength] = useState(numColumns);
+  const [currentSelected, setCurrentSelected] = useState<
+    SelectableButtonModel | undefined
+  >();
 
   useEffect(() => {
     let _colSize: number | 'auto' = 0;
@@ -91,6 +97,7 @@ const SelectableList = ({
     index: number,
     itemOnSelected?: (state: boolean) => void
   ) => {
+    setCurrentSelected(items[index]);
     if (itemOnSelected) {
       itemOnSelected(state);
     }
@@ -108,8 +115,11 @@ const SelectableList = ({
             onSelect={(state: boolean) =>
               onItemSelected(state, index, item.onSelected)
             }
+            id={item.id}
             text={item.text}
-            selected={item.selected}
+            selected={
+              singleSelection ? currentSelected?.id === item.id : item.selected
+            }
             containerStyle={[
               applyParent
                 ? {

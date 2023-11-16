@@ -15,6 +15,7 @@ export interface ButtonStyleModel {
 }
 
 interface Props {
+  id?: number;
   text: string;
   selected?: boolean;
   onSelect?: (state: boolean) => void;
