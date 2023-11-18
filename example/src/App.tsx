@@ -89,6 +89,7 @@ const App = () => {
           console.log('state:', state, ' - index:', index)
         }
         // singleSelection={true}
+        // preventDeselect={false}
         // auto={true}
         // scrollEnabled={true}
         // horizontal={true}

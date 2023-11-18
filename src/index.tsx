@@ -40,6 +40,7 @@ interface Props
   handleItemSelected?: (state: boolean, index: number) => void;
   disabled?: boolean;
   singleSelection?: boolean;
+  preventDeselect?: boolean;
 }
 
 const SelectableList = ({
@@ -62,6 +63,7 @@ const SelectableList = ({
   disabled = false,
   singleSelection = false,
   scrollEnabled = false,
+  preventDeselect = false,
   ...flatListProps
 }: Props) => {
   const [colSize, setColSize] = useState<number | 'auto'>(0);
@@ -149,6 +151,7 @@ const SelectableList = ({
             activeStyle={activeStyle}
             passiveStyle={passiveStyle}
             disabled={disabled}
+            preventDeselect={preventDeselect}
           />
         )}
         numColumns={colLength}

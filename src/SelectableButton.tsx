@@ -25,6 +25,7 @@ interface Props {
   passiveStyle?: ButtonStyleModel;
   wrapperStyle?: StyleProp<ViewStyle>;
   disabled?: boolean;
+  preventDeselect?: boolean;
 }
 
 const SelectableButton = ({
@@ -37,6 +38,7 @@ const SelectableButton = ({
   passiveStyle,
   wrapperStyle,
   disabled,
+  preventDeselect,
 }: Props) => {
   const [isSelected, setIsSelected] = useState(selected);
 
@@ -46,6 +48,10 @@ const SelectableButton = ({
 
   const onPressed = () => {
     setIsSelected((prev) => {
+      if (prev && preventDeselect) {
+        return prev;
+      }
+
       if (onSelect) {
         onSelect(!prev);
       }
