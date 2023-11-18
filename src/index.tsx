@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, View } from 'react-native';
 import {
+  Dimensions,
   FlatList,
+  FlatListProps,
   type StyleProp,
   StyleSheet,
   type TextStyle,
+  View,
   type ViewStyle,
 } from 'react-native';
 import SelectableButton, { type ButtonStyleModel } from './SelectableButton';
@@ -18,7 +20,8 @@ interface SelectableButtonModel {
   onSelected?: (state: boolean) => void;
 }
 
-interface Props {
+interface Props
+  extends Omit<FlatListProps<SelectableButtonModel>, 'data' | 'renderItem'> {
   items: Array<SelectableButtonModel>;
   numColumns?: number;
   itemSize?: number;
@@ -58,6 +61,8 @@ const SelectableList = ({
   handleItemSelected,
   disabled = false,
   singleSelection = false,
+  scrollEnabled = false,
+  ...flatListProps
 }: Props) => {
   const [colSize, setColSize] = useState<number | 'auto'>(0);
   const [colLength, setColLength] = useState(numColumns);
@@ -147,12 +152,13 @@ const SelectableList = ({
           />
         )}
         numColumns={colLength}
-        scrollEnabled={false}
+        scrollEnabled={scrollEnabled}
         key={colLength}
         contentContainerStyle={[
           auto ? styles.autoWrapper : undefined,
           contentContainerStyle,
         ]}
+        {...flatListProps}
       />
     </View>
   );

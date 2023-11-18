@@ -53,24 +53,25 @@ const items = [
     onSelected: (state: boolean) => console.log('Friday state:', state),
   },
   {
+    id: 9,
     text: 'D',
     selected: false,
     onSelected: (state: boolean) => console.log('D state:', state),
   },
   {
-    id: 9,
+    id: 10,
     text: 'Saturday',
     selected: false,
     onSelected: (state: boolean) => console.log('A state:', state),
   },
   {
-    id: 10,
+    id: 11,
     text: 'Sunday',
     selected: false,
     onSelected: (state: boolean) => console.log('Saturday state:', state),
   },
   {
-    id: 11,
+    id: 12,
     text: 'E',
     selected: false,
     onSelected: (state: boolean) => console.log('E state:', state),
@@ -87,9 +88,17 @@ const App = () => {
         handleItemSelected={(state: boolean, index: number) =>
           console.log('state:', state, ' - index:', index)
         }
-        singleSelection={true}
+        // singleSelection={true}
+        // auto={true}
+        // scrollEnabled={true}
+        // horizontal={true}
+        // showsHorizontalScrollIndicator={false}
         // disabled={true}
-        // containerStyle={{ backgroundColor: 'grey' }}
+        // contentContainerStyle={{
+        //   flexDirection: 'row',
+        //   flexWrap: 'nowrap',
+        //   justifyContent: 'flex-start',
+        // }}
         // itemWidth={64}
         // itemSize={64}
         // itemContainerStyle={{ width: 64, height: 64 }}
