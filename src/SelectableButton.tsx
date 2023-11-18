@@ -30,6 +30,7 @@ interface Props {
 }
 
 const SelectableButton = ({
+  id,
   selected = false,
   text,
   onSelect,
@@ -45,7 +46,7 @@ const SelectableButton = ({
 
   useEffect(() => {
     setIsSelected(selected);
-  }, [selected]);
+  }, [id, selected]);
 
   const onPressed = () => {
     setIsSelected((prev) => {

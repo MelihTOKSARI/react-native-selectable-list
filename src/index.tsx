@@ -70,7 +70,7 @@ const SelectableList = ({
   const [colLength, setColLength] = useState(numColumns);
   const [currentSelected, setCurrentSelected] = useState<
     SelectableButtonModel | undefined
-  >();
+  >(items.find((t) => t.selected));
 
   useEffect(() => {
     let _colSize: number | 'auto' = 0;
