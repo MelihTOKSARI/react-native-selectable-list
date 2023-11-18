@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Dimensions,
   FlatList,
-  FlatListProps,
+  type FlatListProps,
   type StyleProp,
   StyleSheet,
   type TextStyle,
