@@ -88,6 +88,23 @@ const App = () => {
         handleItemSelected={(state: boolean, index: number) =>
           console.log('state:', state, ' - index:', index)
         }
+        // activeStyle={{
+        //   backgroundColor: '#3D465C',
+        //   textStyle: {
+        //     color: '#FFF',
+        //   },
+        // }}
+        // passiveStyle={{
+        //   backgroundColor: '#E9EDF5',
+        //   textStyle: {
+        //     color: '#3D465C',
+        //   },
+        // }}
+        // itemTextStyle={{
+        //   fontSize: 16,
+        //   fontWeight: '500',
+        //   lineHeight: 20,
+        // }}
         // singleSelection={true}
         // preventDeselect={false}
         // auto={true}

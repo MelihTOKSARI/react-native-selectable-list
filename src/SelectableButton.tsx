@@ -11,7 +11,8 @@ import {
 
 export interface ButtonStyleModel {
   backgroundColor: string;
-  borderColor: string;
+  borderColor?: string;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 interface Props {
@@ -75,7 +76,15 @@ const SelectableButton = ({
             : passiveStyle || styles.notSelected,
         ]}
       >
-        <Text style={[styles.text, textStyle]}>{text}</Text>
+        <Text
+          style={[
+            styles.text,
+            textStyle,
+            isSelected ? activeStyle?.textStyle : passiveStyle?.textStyle,
+          ]}
+        >
+          {text}
+        </Text>
       </View>
     </TouchableOpacity>
   );
