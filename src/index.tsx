@@ -73,6 +73,10 @@ const SelectableList = ({
   >(items.find((t) => t.selected));
 
   useEffect(() => {
+    setCurrentSelected(items.find((t) => t.selected));
+  }, [items]);
+
+  useEffect(() => {
     let _colSize: number | 'auto' = 0;
     let _colLength = 0;
     if (itemWidth) {
