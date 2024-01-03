@@ -39,13 +39,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/MelihTOKSARI/rn-selectable-list",
+  "repository": "https://github.com/MelihTOKSARI/react-native-selectable-list",
   "author": "Melih Toksari <smtoksari@gmail.com> (https://github.com/MelihTOKSARI)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MelihTOKSARI/rn-selectable-list/issues"
+    "url": "https://github.com/MelihTOKSARI/react-native-selectable-list/issues"
   },
-  "homepage": "https://github.com/MelihTOKSARI/rn-selectable-list#readme",
+  "homepage": "https://github.com/MelihTOKSARI/react-native-selectable-list#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
