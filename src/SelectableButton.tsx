@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 
 export interface ButtonStyleModel {
-  backgroundColor: string;
+  backgroundColor?: string;
   borderColor?: string;
+  wrapperStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }
 
@@ -73,8 +74,8 @@ const SelectableButton = ({
           styles.wrapper,
           wrapperStyle,
           isSelected
-            ? activeStyle || styles.selected
-            : passiveStyle || styles.notSelected,
+            ? activeStyle?.wrapperStyle || activeStyle || styles.selected
+            : passiveStyle?.wrapperStyle || passiveStyle || styles.notSelected,
         ]}
       >
         <Text

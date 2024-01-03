@@ -95,9 +95,12 @@ const App = () => {
         //   },
         // }}
         // passiveStyle={{
-        //   backgroundColor: '#E9EDF5',
         //   textStyle: {
-        //     color: '#3D465C',
+        //     color: '#15171E',
+        //   },
+        //   wrapperStyle: {
+        //     backgroundColor: '#FFF',
+        //     opacity: 0.4,
         //   },
         // }}
         // itemTextStyle={{
